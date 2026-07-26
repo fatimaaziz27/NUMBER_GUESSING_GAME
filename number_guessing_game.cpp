@@ -1,73 +1,32 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <random>
+#include <cstdio>
 
 using namespace std;
+int main() 
+{
+    std::random_device rd;
+    // 2. Initialize the standard math engine (Mersenne Twister)
+    std::mt19937 gen(rd());
+    // 3. Define the inclusive range [min, max]
+    std::uniform_int_distribution<int> distrib(1, 100);
+    // 4. Generate the random number
+    int n = distrib(gen);
+    // printf("random number %d \n",n);
 
-int main() {
-    srand(time(0));
-
-    int n = rand() % 100 + 1;
     int a = -1;
     int guesses = 0;
 
     while (a != n) {
-        guesses++;
+        guesses ++;
+        
+        printf("Enter a number: ");
+        scanf("%d",&a);
 
-        cout << "Enter a number: ";
-        cin >> a;
-
-        if (a > n) {
-            cout << "Enter a lower number." << endl;
-        }
-        else if (a < n) {
-            cout << "Enter a higher number." << endl;
-        }
+        if (a>n)
+            printf("\nEnter lower number\n");
+        else if (a<n)
+            printf("\nEnter higher number\n");
     }
-
-    cout << "Congratulations! You guessed the number in "
-         << guesses << " attempt(s)." << endl;
-
-    return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-using namespace std;
-
-int main() {
-    srand(time(0));
-
-    int n = rand() % 100 + 1;
-    int a = -1;
-    int guesses = 0;
-
-    while (a != n) {
-        guesses++;
-
-        cout << "Enter a number: ";
-        cin >> a;
-
-        if (a > n)
-            cout << "Enter a lower number." << endl;
-        else if (a < n)
-            cout << "Enter a higher number." << endl;
-    }
-
-    cout << "Congratulations! You guessed the number in "
-         << guesses << " attempt(s)." << endl;
-
-    return 0;
+    printf("The number you guessed in %d attempts.",guesses);
 }
